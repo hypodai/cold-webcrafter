@@ -1,0 +1,20 @@
+---
+import site from '../../content/site.json';
+const year = new Date().getFullYear();
+---
+<footer class="bg-brand-950 text-brand-100">
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 sm:px-6">
+    <div>
+      <p class="font-serif text-xl font-semibold text-white">{site.name}</p>
+      <p class="mt-2 max-w-sm text-sm">{site.footer_text}</p>
+    </div>
+    <address class="text-sm not-italic leading-7">
+      <p>{site.legal_name}</p>
+      <p>{site.address.street}, {site.address.locality} {site.address.postcode}</p>
+      <p><a class="whitespace-nowrap underline-offset-4 hover:underline" href={`tel:${site.phone_href}`}>{site.phone}</a> · <a class="underline-offset-4 hover:underline" href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p>{site.hours}</p>
+      <p>{site.registration_id}</p>
+    </address>
+  </div>
+  <div class="border-t border-white/10 py-4 text-center text-xs text-brand-200">© {year} {site.legal_name}</div>
+</footer>

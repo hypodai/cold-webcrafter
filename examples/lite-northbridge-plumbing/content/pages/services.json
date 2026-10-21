@@ -1,0 +1,38 @@
+{
+  "slug": "services",
+  "title": "Plumbing & Heating Services | Northbridge Plumbing & Heating",
+  "description": "Boiler installation and servicing, 24/7 emergency plumbing, bathroom refits, radiator replacement and power flushing in Northbridge and the surrounding villages.",
+  "nav": {"label": "Services", "order": 2},
+  "parent": null,
+  "redirects_from": ["/services.html", "/gallery.html", "/services/boiler-installation.html", "/services/emergency-plumbing.html", "/services/bathrooms.html"],
+  "redirect_targets": {
+    "/services/boiler-installation.html": "/services#boilers",
+    "/services/emergency-plumbing.html": "/services#emergency",
+    "/services/bathrooms.html": "/services#bathrooms"
+  },
+  "blocks": [
+    {"type": "breakdown", "data": {
+      "eyebrow": "Services", "heading": "Plumbing and heating, done properly",
+      "text": "Serving Northbridge and the surrounding villages. Gas Safe registered and fully insured.",
+      "items": [
+        {"name": "Boiler installation and servicing", "anchor": "boilers", "icon": "boiler",
+         "text": "We have installed more than 1,200 boilers.",
+         "image": "boiler-installation", "alt": "Boiler installation", "cta_text": "Enquire about boilers"},
+        {"name": "Emergency plumbing (24/7)", "anchor": "emergency", "icon": "emergency",
+         "text": "Emergency plumbing is available 24/7.",
+         "cta_text": "Call 01632 960 123", "cta_url": "tel:+441632960123"},
+        {"name": "Bathroom refits", "anchor": "bathrooms", "icon": "bathroom",
+         "text": "We have fitted over 300 bathrooms.",
+         "image": "bathroom-refit", "alt": "Bathroom refit", "image2": "shower-install", "alt2": "Shower install", "cta_text": "Enquire about a bathroom"},
+        {"name": "Radiator replacement and power flushing", "anchor": "radiators", "icon": "radiator",
+         "image": "radiator-replacement", "alt": "Radiator replacement", "cta_text": "Enquire about radiators"}
+      ]
+    }},
+    {"type": "cta", "data": {
+      "heading": "Not sure what you need?",
+      "text": "Tell us what is going on and we will get back to you. Emergencies 24/7.",
+      "cta_text": "Send an enquiry", "cta_url": "/contact#enquiry",
+      "cta2_text": "Call 01632 960 123", "cta2_url": "tel:+441632960123"
+    }}
+  ]
+}

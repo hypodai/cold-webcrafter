@@ -1,0 +1,14 @@
+---
+import Hero from './Hero.astro';
+import Stats from './Stats.astro';
+import Services from './Services.astro';
+import About from './About.astro';
+import Testimonials from './Testimonials.astro';
+import Cta from './Cta.astro';
+import Breakdown from './Breakdown.astro';
+import Contact from './Contact.astro';
+import Form from './Form.astro';
+const map = { hero: Hero, stats: Stats, services: Services, about: About, testimonials: Testimonials, cta: Cta, breakdown: Breakdown, contact: Contact, form: Form };
+const { blocks } = Astro.props;
+---
+{blocks.map((b) => { const C = map[b.type]; if (!C) throw new Error(`no template for block ${b.type}`); return <C d={b.data} />; })}

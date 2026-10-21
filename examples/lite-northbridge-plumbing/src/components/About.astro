@@ -1,0 +1,18 @@
+---
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Picture from './Picture.astro';
+const { d } = Astro.props;
+---
+<Section tone="paper">
+  <div class="grid items-center gap-10 lg:grid-cols-2">
+    {d.image && <div class="overflow-hidden rounded-2xl shadow-soft" data-reveal><Picture name={d.image} alt={d.alt} widths={[480, 800, 1200]} sizes="(min-width:1024px) 560px, 92vw" class="aspect-[3/2] w-full object-cover" /></div>}
+    <div>
+      <Heading eyebrow={d.eyebrow} heading={d.heading} />
+      <div data-reveal style="--d:100ms">
+        <p class="mt-5 text-lg text-muted">{d.text}</p>
+        {d.highlight && <p class="mt-6 border-l-4 border-brand-500 pl-4 font-serif text-xl font-medium leading-snug text-brand-800">{d.highlight}</p>}
+      </div>
+    </div>
+  </div>
+</Section>

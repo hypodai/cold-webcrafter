@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+import site from '../../content/site.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getImage } from 'astro:assets';
+import { img } from '../lib/images';
+const { page, jsonld = [] } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '');
+const canonical = new URL(path || '/', site.url).href;
+const og = await getImage({ src: img('hero-van')!, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+const ogUrl = new URL(og.src, site.url).href;
+const business = {
+  '@context': 'https://schema.org', '@type': 'Plumber', '@id': `${site.url}/#business`,
+  name: site.name, legalName: site.legal_name, url: site.url, telephone: `+44${site.phone.replace(/\s/g, '').replace(/^0/, '')}`, email: site.email,
+  address: { '@type': 'PostalAddress', streetAddress: site.address.street, addressLocality: site.address.locality, postalCode: site.address.postcode },
+  areaServed: site.area,
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '17:30' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '12:00' },
+  ],
+};
+---
+<!doctype html>
+<html lang={site.language}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{page.title}</title>
+  <meta name="description" content={page.description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="theme-color" content="#1f4e79" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:title" content={page.title} />
+  <meta property="og:description" content={page.description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogUrl} />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={page.title} />
+  <meta name="twitter:description" content={page.description} />
+  <meta name="twitter:image" content={ogUrl} />
+  <script is:inline>document.documentElement.classList.add('js')</script>
+  <script type="application/ld+json" set:html={JSON.stringify(business)} />
+  {jsonld.map((j) => <script type="application/ld+json" set:html={JSON.stringify(j)} />)}
+</head>
+<body>
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2">Skip to content</a>
+  <Header />
+  <main id="main"><slot /></main>
+  <Footer />
+  <script is:inline>
+    (function () {
+      var els = [].slice.call(document.querySelectorAll('[data-reveal]'));
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('is-visible'); }); return; }
+      var started = false;
+      var io = new IntersectionObserver(function (entries) {
+        started = true;
+        entries.forEach(function (en) { en.target.classList.toggle('is-visible', en.isIntersecting); });
+      }, { threshold: 0.12 });
+      els.forEach(function (e) { io.observe(e); });
+      // Safety net: if the observer hasn't reported within ~2 s, reveal what is on screen.
+      setTimeout(function () {
+        if (started) return;
+        els.forEach(function (e) { var r = e.getBoundingClientRect(); if (r.top < window.innerHeight) e.classList.add('is-visible'); });
+      }, 2000);
+    })();
+  </script>
+</body>
+</html>

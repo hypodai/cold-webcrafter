@@ -1,0 +1,30 @@
+---
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Icon from './Icon.astro';
+const { d } = Astro.props;
+const mapUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(d.address);
+const tel = '+44' + d.phone.replace(/\s/g, '').replace(/^0/, '');
+---
+<Section tone="paper">
+  <Heading eyebrow={d.eyebrow} heading={d.heading} level={1} />
+  <div class="mt-10 grid gap-4 sm:grid-cols-2" data-reveal>
+    <a href={`tel:${tel}`} class="flex items-center gap-4 rounded-2xl border border-line bg-white p-5 shadow-soft transition hover:border-brand-300">
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-700 text-white"><Icon name="phone" /></span>
+      <span><span class="block text-sm text-muted">Phone</span><span class="block whitespace-nowrap text-xl font-semibold">{d.phone}</span></span>
+    </a>
+    <a href={`mailto:${d.email}`} class="flex items-center gap-4 rounded-2xl border border-line bg-white p-5 shadow-soft transition hover:border-brand-300">
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-700 text-white"><Icon name="mail" /></span>
+      <span class="min-w-0"><span class="block text-sm text-muted">Email</span><span class="block break-words text-lg font-semibold">{d.email}</span></span>
+    </a>
+    <a href={mapUrl} class="flex items-center gap-4 rounded-2xl border border-line bg-white p-5 shadow-soft transition hover:border-brand-300">
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-700 text-white"><Icon name="pin" /></span>
+      <span><span class="block text-sm text-muted">Address</span><span class="block text-lg font-semibold">{d.address}</span><span class="mt-1 block text-sm font-medium text-brand-600">{d.map_link_text}</span></span>
+    </a>
+    <div class="flex items-center gap-4 rounded-2xl border border-line bg-white p-5">
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-700"><Icon name="clock" /></span>
+      <span><span class="block text-sm text-muted">Opening hours</span><span class="block text-base font-semibold">{d.text.replace('Office hours: ', '')}</span></span>
+    </div>
+  </div>
+  <p class="mt-6 text-sm text-muted">{d.company} · {d.registration_id}</p>
+</Section>

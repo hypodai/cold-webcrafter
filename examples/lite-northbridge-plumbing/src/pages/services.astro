@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import Blocks from '../components/Blocks.astro';
+import site from '../../content/site.json';
+import page from '../../content/pages/services.json';
+const items = page.blocks.find((b) => b.type === 'breakdown')!.data.items;
+const jsonld = items.map((it) => ({
+  '@context': 'https://schema.org', '@type': 'Service', name: it.name, serviceType: it.name,
+  provider: { '@id': `${site.url}/#business` }, areaServed: site.area, url: `${site.url}/services#${it.anchor}`,
+}));
+---
+<Base page={page} jsonld={jsonld}><Blocks blocks={page.blocks} /></Base>

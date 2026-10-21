@@ -1,0 +1,17 @@
+---
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+const { d } = Astro.props;
+const cols = { 1: 'md:grid-cols-1', 2: 'md:grid-cols-2', 3: 'md:grid-cols-3' }[d.items.length];
+---
+<Section tone="white" id="testimonials">
+  <Heading eyebrow={d.eyebrow} heading={d.heading} />
+  <div class={`mt-10 grid gap-5 ${cols}`}>
+    {d.items.map((t, i) => (
+      <figure class="flex h-full flex-col rounded-2xl border border-line bg-paper p-6" data-reveal style={`--d:${i * 90}ms`}>
+        <blockquote class="font-serif text-xl leading-snug text-ink">“{t.quote}”</blockquote>
+        <figcaption class="mt-auto pt-5 text-sm font-semibold text-brand-700">{t.name}</figcaption>
+      </figure>
+    ))}
+  </div>
+</Section>

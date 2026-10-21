@@ -1,0 +1,72 @@
+[
+  {
+    "url": "http://127.0.0.1:4600/img/hero-van.jpg",
+    "file": "hero-van.jpg",
+    "ok": true,
+    "status": 200,
+    "error": null,
+    "bytes": 249224,
+    "width": 3000,
+    "height": 1600
+  },
+  {
+    "url": "http://127.0.0.1:4600/img/team.jpg",
+    "file": "team-sam-priya.jpg",
+    "ok": true,
+    "status": 200,
+    "error": null,
+    "bytes": 60850,
+    "width": 1600,
+    "height": 1067
+  },
+  {
+    "url": "http://127.0.0.1:4600/img/boiler.jpg",
+    "file": "boiler-installation.jpg",
+    "ok": true,
+    "status": 200,
+    "error": null,
+    "bytes": 32633,
+    "width": 1200,
+    "height": 900
+  },
+  {
+    "url": "http://127.0.0.1:4600/img/bathroom-1.jpg",
+    "file": "bathroom-refit.jpg",
+    "ok": true,
+    "status": 200,
+    "error": null,
+    "bytes": 7091,
+    "width": 400,
+    "height": 300
+  },
+  {
+    "url": "http://127.0.0.1:4600/img/bathroom-2.jpg",
+    "file": "shower-install.jpg",
+    "ok": true,
+    "status": 200,
+    "error": null,
+    "bytes": 7313,
+    "width": 400,
+    "height": 300
+  },
+  {
+    "url": "http://127.0.0.1:4600/img/radiator.jpg",
+    "file": "radiator-replacement.jpg",
+    "ok": true,
+    "status": 200,
+    "error": null,
+    "bytes": 7437,
+    "width": 400,
+    "height": 300
+  },
+  {
+    "url": "http://127.0.0.1:4600/img/logo.gif",
+    "file": "logo.gif",
+    "ok": true,
+    "status": 200,
+    "error": null,
+    "bytes": 977,
+    "width": 160,
+    "height": 60
+  }
+]

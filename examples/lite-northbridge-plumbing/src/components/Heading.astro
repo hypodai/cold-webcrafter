@@ -1,0 +1,9 @@
+---
+const { eyebrow, heading, text, dark = false, level = 2 } = Astro.props;
+const H = `h${level}`;
+---
+<div class="max-w-2xl" data-reveal>
+  {eyebrow && <p class={`text-xs font-semibold uppercase tracking-[0.18em] ${dark ? 'text-brand-200' : 'text-brand-500'}`}>{eyebrow}</p>}
+  {heading && <H class="mt-3 text-3xl font-semibold leading-[1.15] sm:text-4xl">{heading}</H>}
+  {text && <p class={`mt-4 text-lg ${dark ? 'text-brand-100' : 'text-muted'}`}>{text}</p>}
+</div>

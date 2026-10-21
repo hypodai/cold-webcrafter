@@ -1,0 +1,53 @@
+{
+  "slug": "",
+  "title": "Plumbing & Heating in Northbridge | Northbridge Plumbing & Heating",
+  "description": "Family run plumbing and heating business serving Northbridge and the surrounding villages for over 25 years. Gas Safe registered, fully insured, emergency call-outs 24/7.",
+  "nav": {"label": "Home", "order": 1},
+  "parent": null,
+  "redirects_from": ["/index.html", "/about.html", "/testimonials.html", "/news.html"],
+  "blocks": [
+    {"type": "hero", "data": {
+      "eyebrow": "Plumbing & Heating · Northbridge",
+      "heading": "Plumbing and heating you can rely on in Northbridge",
+      "text": "Northbridge Plumbing & Heating is a family run business serving Northbridge and the surrounding villages for over 25 years.",
+      "subheading": "Gas Safe registered and fully insured. No call out charge within NB postcodes.",
+      "cta_text": "Call 01632 960 123", "cta_url": "tel:+441632960123",
+      "cta2_text": "Send an enquiry", "cta2_url": "/contact#enquiry",
+      "image": "hero-van", "alt": "Our van on a job in Northbridge"
+    }},
+    {"type": "stats", "data": {"items": [
+      {"number": "25", "suffix": "+", "label": "years serving Northbridge and the surrounding villages"},
+      {"number": "1,200", "suffix": "+", "label": "boilers installed"},
+      {"number": "300", "suffix": "+", "label": "bathrooms fitted"}
+    ]}},
+    {"type": "services", "data": {
+      "eyebrow": "What we do", "heading": "Our services",
+      "items": [
+        {"name": "Boiler installation and servicing", "link": "/services#boilers", "icon": "boiler", "image": "boiler-installation", "alt": "Boiler installation"},
+        {"name": "Emergency plumbing (24/7)", "link": "/services#emergency", "icon": "emergency"},
+        {"name": "Bathroom refits", "link": "/services#bathrooms", "icon": "bathroom", "image": "bathroom-refit", "alt": "Bathroom refit"},
+        {"name": "Radiator replacement and power flushing", "link": "/services#radiators", "icon": "radiator", "image": "radiator-replacement", "alt": "Radiator replacement"}
+      ]
+    }},
+    {"type": "about", "data": {
+      "eyebrow": "Who we are", "heading": "Started by Sam Carter in 1998",
+      "text": "Northbridge Plumbing was started by Sam Carter in 1998. Today Sam runs the business with Priya Shah, our heating engineer, and a team of four.",
+      "highlight": "We believe in turning up on time, explaining what we do and leaving your home clean.",
+      "image": "team-sam-priya", "alt": "Sam and Priya, Northbridge Plumbing"
+    }},
+    {"type": "testimonials", "data": {
+      "eyebrow": "Customers", "heading": "What our customers say",
+      "items": [
+        {"quote": "Sam replaced our boiler in a day and left everything spotless.", "name": "Helen, Northbridge"},
+        {"quote": "Came out at 2am for a burst pipe. Lifesavers!", "name": "Tom R., Eastfield"},
+        {"quote": "Priya explained every option for our heating without any pressure.", "name": "M. Okafor"}
+      ]
+    }},
+    {"type": "cta", "data": {
+      "heading": "Need a plumber or heating engineer?",
+      "text": "No call out charge within NB postcodes. Emergencies 24/7.",
+      "cta_text": "Call 01632 960 123", "cta_url": "tel:+441632960123",
+      "cta2_text": "Send an enquiry", "cta2_url": "/contact#enquiry"
+    }}
+  ]
+}

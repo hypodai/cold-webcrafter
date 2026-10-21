@@ -1,0 +1,26 @@
+---
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import Picture from './Picture.astro';
+const { d } = Astro.props;
+---
+<section class="relative overflow-hidden bg-brand-800 text-white">
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-950 via-brand-800 to-brand-600 opacity-95" aria-hidden="true"></div>
+  <div class="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-20">
+    <div data-reveal>
+      {d.eyebrow && <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-200">{d.eyebrow}</p>}
+      <h1 class="mt-4 text-4xl font-semibold leading-[1.1] sm:text-5xl">{d.heading}</h1>
+      {d.text && <p class="mt-5 max-w-xl text-lg text-brand-100">{d.text}</p>}
+      {d.subheading && <p class="mt-4 flex max-w-xl items-start gap-2 font-medium"><Icon name="shield" class="mt-0.5 h-5 w-5 shrink-0 text-brand-200" />{d.subheading}</p>}
+      <div class="mt-8 flex flex-wrap gap-3">
+        {d.cta_text && <Button href={d.cta_url} variant="light"><Icon name="phone" class="h-5 w-5" />{d.cta_text}</Button>}
+        {d.cta2_text && <Button href={d.cta2_url} variant="ghost">{d.cta2_text}</Button>}
+      </div>
+    </div>
+    {d.image && (
+      <div class="overflow-hidden rounded-2xl shadow-soft ring-1 ring-white/20" data-reveal style="--d:120ms">
+        <Picture name={d.image} alt={d.alt} widths={[480, 800, 1200]} sizes="(min-width:1024px) 520px, 92vw" loading="eager" class="aspect-[16/10] w-full object-cover" />
+      </div>
+    )}
+  </div>
+</section>

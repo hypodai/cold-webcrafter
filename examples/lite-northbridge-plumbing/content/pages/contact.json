@@ -1,0 +1,25 @@
+{
+  "slug": "contact",
+  "title": "Contact Northbridge Plumbing & Heating | 01632 960 123",
+  "description": "Contact Northbridge Plumbing & Heating at 14 Mill Lane, Northbridge NB4 2QT. Call 01632 960 123 or send an enquiry. Emergencies 24/7.",
+  "nav": {"label": "Contact", "order": 3},
+  "parent": null,
+  "redirects_from": ["/contact.html", "/shop.html", "/privacy.html"],
+  "blocks": [
+    {"type": "contact", "data": {
+      "eyebrow": "Contact", "heading": "Contact us",
+      "text": "Office hours: Mon–Fri 8:00–17:30, Sat 9:00–12:00. Emergencies 24/7.",
+      "company": "Northbridge Plumbing & Heating Ltd",
+      "address": "14 Mill Lane, Northbridge NB4 2QT",
+      "registration_id": "Company no. 09999999",
+      "phone": "01632 960 123", "email": "info@northbridge-plumbing.example",
+      "map_link_text": "Open the address in Maps"
+    }},
+    {"type": "form", "data": {
+      "eyebrow": "Enquiry", "heading": "Send us a message",
+      "text": "Tell us what you need and how to reach you.",
+      "button": "Send message",
+      "confirmation": "Thank you — we have your message."
+    }}
+  ]
+}

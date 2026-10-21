@@ -1,0 +1,56 @@
+---
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+const { d } = Astro.props;
+const field = 'mt-1.5 w-full rounded-lg border border-line bg-white px-4 py-3 text-base outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200';
+---
+<Section tone="white" id="enquiry">
+  <div class="mx-auto max-w-2xl">
+    <Heading eyebrow={d.eyebrow} heading={d.heading} text={d.text} />
+    <form id="enquiry-form" novalidate class="mt-8 space-y-5" data-reveal>
+      <div>
+        <label for="f-name" class="text-sm font-semibold">Name</label>
+        <input id="f-name" name="name" autocomplete="name" required class={field} />
+        <p class="mt-1 hidden text-sm text-red-700" data-error-for="f-name">Please enter your name.</p>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label for="f-phone" class="text-sm font-semibold">Phone</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" class={field} />
+        </div>
+        <div>
+          <label for="f-email" class="text-sm font-semibold">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" class={field} />
+        </div>
+      </div>
+      <p class="hidden text-sm text-red-700" data-error-for="contact">Please give a phone number or an email address so we can reply.</p>
+      <div>
+        <label for="f-msg" class="text-sm font-semibold">Message</label>
+        <textarea id="f-msg" name="message" rows="5" required class={field}></textarea>
+        <p class="mt-1 hidden text-sm text-red-700" data-error-for="f-msg">Please tell us what you need.</p>
+      </div>
+      <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-brand-700 px-6 py-3 text-base font-semibold text-white transition hover:bg-brand-800 active:scale-[0.98]">{d.button}</button>
+    </form>
+    <div id="enquiry-done" tabindex="-1" role="status" class="mt-8 hidden rounded-2xl border border-brand-300 bg-brand-50 p-6 text-lg font-medium text-brand-800">{d.confirmation}</div>
+  </div>
+</Section>
+<script>
+  const form = document.getElementById('enquiry-form') as HTMLFormElement | null;
+  if (form) {
+    const done = document.getElementById('enquiry-done')!;
+    const show = (key: string, on: boolean) => form.parentElement!.querySelector(`[data-error-for="${key}"]`)?.classList.toggle('hidden', !on);
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = (id: string) => (document.getElementById(id) as HTMLInputElement).value.trim();
+      const okName = !!v('f-name'), okMsg = !!v('f-msg');
+      const okContact = !!v('f-phone') || (!!v('f-email') && (document.getElementById('f-email') as HTMLInputElement).validity.valid);
+      show('f-name', !okName); show('f-msg', !okMsg); show('contact', !okContact);
+      if (!(okName && okMsg && okContact)) { form.querySelector<HTMLElement>('input:invalid, [required]')?.focus(); return; }
+      // Preview build: nothing is sent; the visitor still sees the whole flow.
+      form.classList.add('hidden');
+      done.classList.remove('hidden');
+      done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      done.focus({ preventScroll: true });
+    });
+  }
+</script>

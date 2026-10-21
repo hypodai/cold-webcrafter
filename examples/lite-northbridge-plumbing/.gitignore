@@ -1,0 +1,19 @@
+# scraped material of the original site — never committed
+sources/
+
+# static preview export (deployed, not versioned)
+preview/
+
+# secrets
+.env*
+!.env.example
+
+# dependencies and build output
+node_modules/
+dist/
+build/
+.astro/
+
+# OS / editor
+.DS_Store
+Thumbs.db

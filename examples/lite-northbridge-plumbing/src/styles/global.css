@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/source-serif-4";
+
+/* Design tokens. Brand scale expanded from the original site's navy (#1f4e79)
+   and nav blue (#2c6aa0); the light tint comes from its footer text (#cfe0f0). */
+@theme {
+  --color-brand-50: #eef5fb;
+  --color-brand-100: #d9e8f5;
+  --color-brand-200: #b5d1ea;
+  --color-brand-300: #86b2d9;
+  --color-brand-400: #5590c4;
+  --color-brand-500: #2c6aa0;
+  --color-brand-600: #245a8c;
+  --color-brand-700: #1f4e79;
+  --color-brand-800: #183d5f;
+  --color-brand-900: #112c45;
+  --color-brand-950: #0b1d2e;
+  --color-ink: #14212e;
+  --color-muted: #4a5b6b;
+  --color-line: #dbe3ea;
+  --color-paper: #f5f8fb;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-serif: "Source Serif 4 Variable", Georgia, serif;
+  --shadow-soft: 0 1px 2px color-mix(in srgb, var(--color-brand-950) 8%, transparent), 0 8px 24px color-mix(in srgb, var(--color-brand-950) 8%, transparent);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { font-family: var(--font-sans); color: var(--color-ink); background: #fff; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--font-serif); letter-spacing: -0.01em; }
+:focus-visible { outline: 3px solid var(--color-brand-400); outline-offset: 2px; }
+
+/* Motion: elements are hidden only when the .js class is present on <html>,
+   so a failed script never leaves a blank page. The class is added AND removed
+   so sections replay in both scroll directions. */
+.js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; transition-delay: var(--d, 0ms); }
+.js [data-reveal].is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+}

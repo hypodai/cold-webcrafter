@@ -1,0 +1,35 @@
+---
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import Picture from './Picture.astro';
+import { img } from '../lib/images';
+const { d } = Astro.props;
+---
+<Section tone="white">
+  <Heading eyebrow={d.eyebrow} heading={d.heading} text={d.text} level={1} />
+  <div class="mt-12 space-y-14">
+    {d.items.map((it, i) => (
+      <article id={it.anchor} class="grid items-center gap-8 lg:grid-cols-2" data-reveal>
+        <div class={i % 2 ? 'lg:order-2' : ''}>
+          <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700"><Icon name={it.icon} class="h-7 w-7" /></span>
+          <h2 class="mt-4 text-2xl font-semibold leading-tight sm:text-3xl">{it.name}</h2>
+          {it.text && <p class="mt-3 text-lg text-muted">{it.text}</p>}
+          <div class="mt-6">
+            <Button href={it.cta_url ?? '/contact#enquiry'} variant="outline">{it.cta_url?.startsWith('tel:') && <Icon name="phone" class="h-5 w-5" />}{it.cta_text}</Button>
+          </div>
+        </div>
+        <div class={i % 2 ? 'lg:order-1' : ''}>
+          {it.image
+            ? (
+              <div class={`grid gap-3 ${it.image2 ? 'grid-cols-2' : ''}`}>
+                <Picture name={it.image} alt={it.alt} widths={[400, 800, 1200]} sizes="(min-width:1024px) 540px, 92vw" class={`aspect-[4/3] w-full rounded-2xl object-cover shadow-soft ${img(it.image)!.width < 800 && !it.image2 ? 'max-w-sm' : ''}`} />
+                {it.image2 && <Picture name={it.image2} alt={it.alt2} widths={[400]} sizes="(min-width:1024px) 270px, 46vw" class="aspect-[4/3] w-full rounded-2xl object-cover shadow-soft" />}
+              </div>)
+            : <div class="flex aspect-[4/3] items-center justify-center rounded-2xl bg-gradient-to-br from-brand-900 to-brand-600 text-brand-100 shadow-soft"><Icon name={it.icon} class="h-20 w-20" /></div>}
+        </div>
+      </article>
+    ))}
+  </div>
+</Section>

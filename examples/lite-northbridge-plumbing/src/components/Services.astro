@@ -1,0 +1,26 @@
+---
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Icon from './Icon.astro';
+import Picture from './Picture.astro';
+const { d } = Astro.props;
+const cols = { 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4' }[d.items.length];
+---
+<Section tone="white">
+  <Heading eyebrow={d.eyebrow} heading={d.heading} text={d.text} />
+  <ul class={`mt-10 grid gap-5 sm:grid-cols-2 ${cols}`}>
+    {d.items.map((it, i) => (
+      <li data-reveal style={`--d:${i * 80}ms`}>
+        <a href={it.link} class="group block h-full overflow-hidden rounded-2xl border border-line bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-brand-300">
+          {it.image
+            ? <Picture name={it.image} alt={it.alt} widths={[400, 800]} sizes="(min-width:1024px) 280px, (min-width:640px) 45vw, 92vw" class="aspect-[4/3] w-full object-cover" />
+            : <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-brand-900 to-brand-600 text-brand-100"><Icon name={it.icon} class="h-14 w-14" /></div>}
+          <div class="flex items-center gap-3 p-5">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700"><Icon name={it.icon} /></span>
+            <span class="text-lg font-semibold leading-snug">{it.name}</span>
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Section>

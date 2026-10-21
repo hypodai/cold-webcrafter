@@ -1,0 +1,50 @@
+[
+  {
+    "from": "/contact.html",
+    "to": "/contact"
+  },
+  {
+    "from": "/shop.html",
+    "to": "/contact"
+  },
+  {
+    "from": "/privacy.html",
+    "to": "/contact"
+  },
+  {
+    "from": "/index.html",
+    "to": "/"
+  },
+  {
+    "from": "/about.html",
+    "to": "/"
+  },
+  {
+    "from": "/testimonials.html",
+    "to": "/#testimonials"
+  },
+  {
+    "from": "/news.html",
+    "to": "/"
+  },
+  {
+    "from": "/services.html",
+    "to": "/services"
+  },
+  {
+    "from": "/gallery.html",
+    "to": "/services"
+  },
+  {
+    "from": "/services/boiler-installation.html",
+    "to": "/services#boilers"
+  },
+  {
+    "from": "/services/emergency-plumbing.html",
+    "to": "/services#emergency"
+  },
+  {
+    "from": "/services/bathrooms.html",
+    "to": "/services#bathrooms"
+  }
+]

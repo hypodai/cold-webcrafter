@@ -1,0 +1,5 @@
+---
+const { id, class: cls = '', tone = 'white' } = Astro.props;
+const bg = { white: 'bg-white', paper: 'bg-paper', dark: 'bg-brand-900 text-white' }[tone];
+---
+<section id={id} class={`${bg} py-16 sm:py-20 ${cls}`}><div class="mx-auto max-w-6xl px-4 sm:px-6"><slot /></div></section>

@@ -1,0 +1,21 @@
+{
+  "language": "en-GB",
+  "name": "Northbridge Plumbing & Heating",
+  "legal_name": "Northbridge Plumbing & Heating Ltd",
+  "short_name": "Northbridge Plumbing",
+  "url": "https://northbridge-plumbing.example",
+  "phone": "01632 960 123",
+  "phone_href": "+441632960123",
+  "email": "info@northbridge-plumbing.example",
+  "address": {"street": "14 Mill Lane", "locality": "Northbridge", "postcode": "NB4 2QT"},
+  "hours": "Mon–Fri 8:00–17:30, Sat 9:00–12:00. Emergencies 24/7.",
+  "registration_id": "Company no. 09999999",
+  "area": "Northbridge and the surrounding villages",
+  "default_description": "Family run plumbing and heating business serving Northbridge and the surrounding villages for over 25 years. Gas Safe registered and fully insured.",
+  "footer_text": "Family run plumbing and heating, serving Northbridge and the surrounding villages.",
+  "nav": [
+    {"label": "Home", "href": "/"},
+    {"label": "Services", "href": "/services"},
+    {"label": "Contact", "href": "/contact"}
+  ]
+}

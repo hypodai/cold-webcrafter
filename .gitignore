@@ -1,0 +1,19 @@
+# eval run outputs
+evals/runs/
+*-workspace/
+
+# scraped material and previews from test runs never get committed
+sources/
+preview/
+
+# node
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+.env*
+dist/

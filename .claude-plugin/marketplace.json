@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "cold-webcrafter",
+  "description": "Automated website remakes for cold outreach.",
+  "owner": {
+    "name": "Michael Šilhavý"
+  },
+  "plugins": [
+    {
+      "name": "cold-webcrafter",
+      "description": "Rebuild an outdated business website as a modern preview or a complete site and draft the cold email that offers it.",
+      "source": "./",
+      "category": "development"
+    }
+  ]
+}

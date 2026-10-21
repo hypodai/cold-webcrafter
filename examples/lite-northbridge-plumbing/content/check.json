@@ -1,0 +1,1 @@
+{ "note_patterns": ["\\bmissing\\b", "not in the sources"] }

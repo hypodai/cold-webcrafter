@@ -1,0 +1,10 @@
+{
+  "name": "cold-webcrafter",
+  "description": "Scrape an outdated business website, rebuild it as a modern preview or a complete site, deploy a hidden preview and draft the cold email that offers it.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Michael Šilhavý",
+    "url": "https://github.com/hypodai"
+  }
+}

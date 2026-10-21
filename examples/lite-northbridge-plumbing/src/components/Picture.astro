@@ -1,0 +1,7 @@
+---
+import { Image } from 'astro:assets';
+import { img } from '../lib/images';
+const { name, alt = '', widths = [480, 800, 1200], sizes = '100vw', class: cls = '', loading = 'lazy' } = Astro.props;
+const src = img(name);
+---
+{src && <Image src={src} alt={alt} widths={widths.filter((w) => w <= src.width)} sizes={sizes} class={cls} loading={loading} format="webp" quality={78} />}

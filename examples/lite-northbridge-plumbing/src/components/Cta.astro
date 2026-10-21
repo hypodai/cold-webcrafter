@@ -1,0 +1,16 @@
+---
+import Section from './Section.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+const { d } = Astro.props;
+---
+<Section tone="dark" class="text-center">
+  <div class="mx-auto max-w-2xl" data-reveal>
+    <h2 class="text-3xl font-semibold leading-[1.15] sm:text-4xl">{d.heading}</h2>
+    {d.text && <p class="mt-4 text-lg text-brand-100">{d.text}</p>}
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      {d.cta_text && <Button href={d.cta_url} variant="light">{d.cta_url?.startsWith('tel:') && <Icon name="phone" class="h-5 w-5" />}{d.cta_text}</Button>}
+      {d.cta2_text && <Button href={d.cta2_url} variant="ghost">{d.cta2_url?.startsWith('tel:') && <Icon name="phone" class="h-5 w-5" />}{d.cta2_text}</Button>}
+    </div>
+  </div>
+</Section>

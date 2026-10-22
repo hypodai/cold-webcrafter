@@ -25,4 +25,8 @@ This repo *is* a skill; the product is the text in `skills/cold-webcrafter/`.
   skill, compare).
 - Backlog: `docs/backlog/QUEUE.md`, one task at a time, commit `Sxxx: …`.
 - Don't change the licence or the repository visibility without the
-  maintainer's explicit decision. The repository stays private until then.
+  maintainer's explicit decision.
+- Releases: `node tools/security-check.mjs`, both test suites, then
+  `node tools/package-skill.mjs` (the zip is built from the last commit, so
+  commit first) and `gh release create v<version> dist/…zip`. CI runs the
+  same on Linux, Windows and macOS.

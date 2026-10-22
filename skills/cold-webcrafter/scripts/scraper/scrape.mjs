@@ -435,4 +435,5 @@ console.log(JSON.stringify({
     output: out,
 }, null, 2));
 
-process.exit(results[0].ok ? 0 : 1);
+// Not process.exit(): on Windows it can crash while fetch's sockets close.
+process.exitCode = results[0].ok ? 0 : 1;

@@ -56,6 +56,16 @@ if (!fromDir === !fromUrl || !['vercel', 'netlify', 'cloudflare', 'other'].inclu
     process.exit(2);
 }
 
+// Input is checked before any network request: process.exit() while fetch's
+// keep-alive sockets are closing crashes Node on Windows (a libuv assertion,
+// exit code 3221226505) after the work is done. Past the crawl the script
+// only sets process.exitCode and lets the event loop end on its own.
+const redirects = redirectsFile ? JSON.parse(readFileSync(redirectsFile, 'utf8')) : [];
+if (!Array.isArray(redirects) || redirects.some((r) => !r.from || !r.to)) {
+    console.error('--redirects must be a JSON array of {"from": "/old", "to": "/new"}');
+    process.exit(2);
+}
+
 const warnings = [];
 const errors = [];
 
@@ -169,8 +179,7 @@ if (fromDir) {
     try {
         await crawl(fromUrl);
     } catch (error) {
-        console.error(`crawl failed: ${error.message} — is the server running at ${fromUrl}?`);
-        process.exit(1);
+        errors.push(`crawl failed: ${error.message} — is the server running at ${fromUrl}?`);
     }
 }
 
@@ -227,12 +236,6 @@ writeFileSync(join(out, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 
 // --- host files -----------------------------------------------------------
 
-const redirects = redirectsFile ? JSON.parse(readFileSync(redirectsFile, 'utf8')) : [];
-if (!Array.isArray(redirects) || redirects.some((r) => !r.from || !r.to)) {
-    console.error('--redirects must be a JSON array of {"from": "/old", "to": "/new"}');
-    process.exit(2);
-}
-
 // A redirect to a page or anchor that isn't in the export is a 404 for
 // everyone who follows an old link. Local static servers don't apply the
 // host's redirect rules, so check the targets here instead.
@@ -270,4 +273,4 @@ if (host === 'vercel') {
 }
 
 console.log(JSON.stringify({ out, files, pages, host, redirects: redirects.length, warnings, errors }, null, 2));
-process.exit(errors.length ? 1 : 0);
+process.exitCode = errors.length ? 1 : 0;

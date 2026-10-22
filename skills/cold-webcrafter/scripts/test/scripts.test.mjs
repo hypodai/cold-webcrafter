@@ -290,6 +290,17 @@ test('export-preview fails on a page that still loads from a dev server', async 
     assert.match(readFileSync(join(dir, 'preview', '_headers'), 'utf8'), /X-Robots-Tag: noindex, nofollow/);
 });
 
+test('export-preview reports a server that is not running as an error, without crashing', async () => {
+    // A port that was just free: nothing answers there.
+    const server = await serve({});
+    const url = `http://127.0.0.1:${server.address().port}`;
+    await new Promise((resolve) => server.close(resolve));
+
+    const result = await run('export-preview.mjs', ['--from-url', url], tmp());
+    assert.equal(result.code, 1, result.stdout + result.stderr);
+    assert.ok(result.json.errors.some((e) => e.startsWith('crawl failed')), result.stdout);
+});
+
 test('export-preview refuses to export into its own source', async () => {
     const dir = tmp();
     mkdirSync(join(dir, 'dist'));

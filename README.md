@@ -1,5 +1,7 @@
 # cold-webcrafter
 
+[![test](https://github.com/hypodai/cold-webcrafter/actions/workflows/test.yml/badge.svg)](https://github.com/hypodai/cold-webcrafter/actions/workflows/test.yml)
+
 An agent skill that turns an outdated small-business website into a modern
 one — and into a reason for the owner to reply.
 
@@ -88,7 +90,7 @@ sends nothing anywhere. Before publishing a new version:
 
 ```
 node tools/security-check.mjs     # secrets, encoded blobs, dangerous commands, injection wording, SKILL.md
-node tools/package-skill.mjs      # dist/cold-webcrafter-<version>.zip — the skill folder only
+node tools/package-skill.mjs      # dist/cold-webcrafter-<version>.zip — the skill folder only, from the last commit
 ```
 
 ## Helper scripts
@@ -106,6 +108,9 @@ Tests use invented data and a local server only:
 
 ```
 node --test skills/cold-webcrafter/scripts/test/*.test.mjs
+
+# the scraper's tests drive a real headless browser — install it once
+cd skills/cold-webcrafter/scripts/scraper && npm install && npx playwright install chromium && cd -
 node --test skills/cold-webcrafter/scripts/scraper/test/*.test.mjs
 ```
 

@@ -46,7 +46,7 @@ for (const file of files) {
     if (size > MAX_FILE) findings.push(`${rel}: ${Math.round(size / 1024)} kB (over ${MAX_FILE / 1024} kB)`);
     if (rel.endsWith('package-lock.json')) findings.push(`${rel}: lock files carry long hashes — leave them out of the upload`);
     const text = readFileSync(file, 'utf8');
-    text.split('\n').forEach((line, i) => {
+    text.split(/\r?\n/).forEach((line, i) => {
         // The SKILL.md description is one long line by design (checked for its own limit below).
         const isDescription = rel === 'SKILL.md' && line.startsWith('description: ');
         if (line.length > 1000 && !isDescription) findings.push(`${rel}:${i + 1}: a ${line.length}-character line (minified?)`);
@@ -57,7 +57,9 @@ for (const file of files) {
 }
 
 const skill = readFileSync(join(ROOT, 'SKILL.md'), 'utf8');
-const front = skill.match(/^---\n([\s\S]*?)\n---\n/);
+// CRLF is tolerated here so a checkout without .gitattributes isn't reported
+// as a missing frontmatter.
+const front = skill.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
 if (!front) findings.push('SKILL.md: no YAML frontmatter');
 else {
     const name = front[1].match(/^name:\s*(.+)$/m)?.[1]?.trim();

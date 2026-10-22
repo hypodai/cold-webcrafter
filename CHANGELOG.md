@@ -4,12 +4,32 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-## [0.1.0] — 2026-10-20
+## [0.1.0] — 2026-10-22
+
+First public pre-release. Entries below record how the skill developed.
 
 ### Added
 - MIT licence.
+- CI (`.github/workflows/test.yml`): security check, script and scraper
+  tests and packaging on Linux, Windows and macOS, plus Node 18 on Linux.
 
-First pre-release (private). Entries below record how the skill developed.
+### Fixed (before publication)
+- Windows: a clone converted every file to CRLF, so the security check
+  reported "no YAML frontmatter" and the zip carried CRLF files.
+  `.gitattributes` keeps LF on every OS; the security check tolerates CRLF.
+- Windows: `export-preview.mjs` crashed on exit (libuv assertion, exit code
+  3221226505) after a successful export, so a run read it as a failure.
+  Input is now validated before any request and the script ends through
+  `process.exitCode` instead of `process.exit()`; a crawl that fails is
+  reported in `errors` like any other problem. Same exit for the scraper.
+- `tools/package-skill.mjs` needed Info-ZIP, missing on Windows. It now
+  builds the zip with `git archive` from the last commit and checks the
+  listing itself, so the zip is exactly what's on GitHub.
+- `outreach.md`: EU rules differ by country — where prior consent is
+  needed even for business recipients (e.g. Germany, Czechia), the skill
+  says a cold email isn't a lawful first contact instead of drafting one.
+- Contributing and README: the scraper's tests need its `npm install` and
+  Chromium first.
 
 ### Changed (evals 3 and 4)
 - Project names when sites share a host; mode cost when the mode is chosen;

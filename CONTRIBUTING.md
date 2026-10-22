@@ -35,12 +35,15 @@ rules keep it working for everyone:
 
 ```
 node --test skills/cold-webcrafter/scripts/test/*.test.mjs
+
+# the scraper's tests drive a real headless browser — install it once
+cd skills/cold-webcrafter/scripts/scraper && npm install && npx playwright install chromium && cd -
 node --test skills/cold-webcrafter/scripts/scraper/test/*.test.mjs
 ```
 
 ## Before a pull request
 
-- [ ] tests pass
+- [ ] tests pass (CI runs them on Linux, Windows and macOS)
 - [ ] `node tools/security-check.mjs` reports no findings
 - [ ] a line in `CHANGELOG.md`
 - [ ] if behaviour could change: the evals in `evals/evals.json` re-run

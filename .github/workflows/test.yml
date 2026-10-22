@@ -1,0 +1,47 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    # Every OS: users run the skill's scripts on Windows as often as on Unix,
+    # and line endings or process exits break there first.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [22]
+        include:
+          - os: ubuntu-latest
+            node: 18
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Security check
+        run: node tools/security-check.mjs
+
+      - name: Script tests
+        run: node --test skills/cold-webcrafter/scripts/test/*.test.mjs
+
+      - name: Install the scraper
+        working-directory: skills/cold-webcrafter/scripts/scraper
+        run: npm install --no-audit --no-fund && npx playwright install --with-deps chromium
+
+      - name: Scraper tests
+        run: node --test skills/cold-webcrafter/scripts/scraper/test/*.test.mjs
+
+      - name: Package
+        run: node tools/package-skill.mjs

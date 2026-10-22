@@ -76,10 +76,14 @@ obviously unlawful where it will be sent. Use the sender's region from the
 profile and the prospect's country from the site, and apply the stricter of
 the two. Examples, not an exhaustive list:
 
-- **EU / EEA:** GDPR and national e-privacy rules — unsolicited business
-  email is often allowed only to a generic business address, with a
-  legitimate-interest basis, clear sender identity and an easy opt-out; some
-  countries require prior consent even for businesses.
+- **EU / EEA:** GDPR and national e-privacy rules, which differ a lot. Some
+  countries allow unsolicited business email to a generic business address,
+  with a legitimate-interest basis, clear sender identity and an easy
+  opt-out; others (e.g. Germany, Czechia) require prior consent even for
+  business recipients — there a cold email to a stranger isn't a lawful
+  first contact at all. Say so plainly and suggest another first step (a
+  phone call or a letter where those are allowed) instead of drafting around
+  the rule; the preview is just as useful there.
 - **United States:** CAN-SPAM — truthful subject and sender, a physical
   postal address of the sender, a working opt-out honoured promptly.
 - **Canada:** CASL — generally requires consent, with narrow exceptions for

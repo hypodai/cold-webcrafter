@@ -1,6 +1,6 @@
 # Backlog
 
-Status: `ready` | `in_progress` | `blocked` | `done`
+Status: `ready` | `in_progress` | `blocked` | `done` | `cancelled`
 
 | ID | Task | Priority | Status |
 |----|------|----------|--------|
@@ -18,4 +18,4 @@ Status: `ready` | `in_progress` | `blocked` | `done`
 | S015 | Pre-publication hardening: LF line endings on every OS, Windows-safe script exits, cross-platform zip packager, CI on Linux/Windows/macOS, EU consent rule in `outreach.md` | P0 | done |
 | S012 | Compare the scraper with the maintainer's original once uploaded; port edge-case handling it has (platform quirks, redirects, error pages) — nothing client-specific | P1 | blocked — waiting for the original |
 | S013 | Measure full-mode tokens end to end in a tool that shows usage (e.g. Claude Code `/cost`), update `budget-and-models.md` | P2 | ready |
-| S014 | Have the cold-email legal notes in `outreach.md` reviewed by someone qualified before publication | P1 | ready — maintainer |
+| S014 | ~~Have the cold-email legal notes in `outreach.md` reviewed by someone qualified~~ — dropped (maintainer, 2026-10-22): the notes stay reminders, not advice; README "Legal grey areas" says so | P1 | cancelled |

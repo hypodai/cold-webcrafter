@@ -4,6 +4,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+- README: "Legal grey areas" — scraping and reusing a site's content next
+  to the cold-email rules; the skill reminds, it doesn't give legal advice.
+
 ## [0.1.0] — 2026-10-22
 
 First public pre-release. Entries below record how the skill developed.

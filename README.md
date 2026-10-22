@@ -55,9 +55,21 @@ reasoning effort per phase, asks once to confirm — and works to the end.
   it,
 - commit the scraped material or your sender profile.
 
-Cold-email rules differ by country (e.g. GDPR/e-privacy in the EU,
-CAN-SPAM in the US, CASL in Canada). The skill reminds you which apply; it
-doesn't give legal advice.
+## Legal grey areas
+
+The skill doesn't give legal advice. Two things it can't make safe for you:
+
+- **Scraping and reusing a site's content.** The skill reads only public
+  pages, honours robots.txt, says who it is and loads one page at a time.
+  The preview reuses the business's own texts and photos, is hidden from
+  search engines and is meant for that business only. Copyright, the
+  site's terms of use and data-protection rules (names or photos of people
+  on the site) still apply and differ by country — check them before you
+  deploy a preview, and delete it if the owner says no.
+- **Cold email.** The rules differ by country (e.g. GDPR/e-privacy in the
+  EU, CAN-SPAM in the US, CASL in Canada); some countries require consent
+  even for business addresses. The skill reminds you which apply and says
+  so plainly where a cold email isn't a lawful first contact.
 
 ## Install
 

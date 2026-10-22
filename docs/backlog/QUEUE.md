@@ -14,7 +14,7 @@ Status: `ready` | `in_progress` | `blocked` | `done`
 | S008 | Default static starter (blocks as components) for the stack the skill picks most often, so runs don't regenerate it | P2 | ready |
 | S009 | Batch mode as an opt-in with a plan-limit warning; per-site fresh context, sequential, `batch.md` state and resume, summary table — instructions done, to verify in S005 | P1 | done |
 | S010 | Licence (MIT), SECURITY.md, CONTRIBUTING.md, security hardening, pre-publication check, zip packager, trigger description | P1 | done |
-| S011 | Publication: public repository, release v0.1.0 with the skill zip | P1 | in_progress |
+| S011 | Publication: public repository, release v0.1.0 with the skill zip (2026-10-22); plugin install from GitHub verified | P1 | done |
 | S015 | Pre-publication hardening: LF line endings on every OS, Windows-safe script exits, cross-platform zip packager, CI on Linux/Windows/macOS, EU consent rule in `outreach.md` | P0 | done |
 | S012 | Compare the scraper with the maintainer's original once uploaded; port edge-case handling it has (platform quirks, redirects, error pages) — nothing client-specific | P1 | blocked — waiting for the original |
 | S013 | Measure full-mode tokens end to end in a tool that shows usage (e.g. Claude Code `/cost`), update `budget-and-models.md` | P2 | ready |

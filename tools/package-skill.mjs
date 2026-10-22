@@ -13,6 +13,7 @@
  */
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, rmSync, existsSync } from 'node:fs';
+import { inflateRawSync } from 'node:zlib';
 
 const SKILL = 'skills/cold-webcrafter';
 const EXCLUDE = ['scripts/test', 'scripts/scraper/test', 'scripts/scraper/.npmrc'];
@@ -30,25 +31,37 @@ if (dirty) {
 
 mkdirSync('dist', { recursive: true });
 if (existsSync(out)) rmSync(out);
-git('archive', '--format=zip', '-o', out, `HEAD:${SKILL}`, '--', '.', ...EXCLUDE.map((path) => `:(exclude)${path}`));
+// Archiving a subtree doesn't read the root .gitattributes, so a Windows
+// core.autocrlf would still turn files into CRLF; the blobs are LF already.
+git('-c', 'core.autocrlf=false', '-c', 'core.eol=lf', 'archive', '--format=zip', '-o', out,
+    `HEAD:${SKILL}`, '--', '.', ...EXCLUDE.map((path) => `:(exclude)${path}`));
 
-// Entry names from the zip's central directory — no `unzip` needed.
+// Entries straight from the zip's central directory — no `unzip` needed.
 function entries(file) {
     const zip = readFileSync(file);
     const end = zip.lastIndexOf(Buffer.from([0x50, 0x4b, 0x05, 0x06]));
     if (end === -1) throw new Error(`${file} is not a zip`);
-    const names = [];
+    const list = [];
     let at = zip.readUInt32LE(end + 16);
     for (let i = zip.readUInt16LE(end + 10); i > 0; i--) {
         const nameLength = zip.readUInt16LE(at + 28);
-        names.push(zip.toString('utf8', at + 46, at + 46 + nameLength));
+        const name = zip.toString('utf8', at + 46, at + 46 + nameLength);
+        const method = zip.readUInt16LE(at + 10);
+        const size = zip.readUInt32LE(at + 20);
+        const local = zip.readUInt32LE(at + 42);
+        const start = local + 30 + zip.readUInt16LE(local + 26) + zip.readUInt16LE(local + 28);
+        const raw = zip.subarray(start, start + size);
+        list.push({ name, read: () => (method === 8 ? inflateRawSync(raw) : raw) });
         at += 46 + nameLength + zip.readUInt16LE(at + 30) + zip.readUInt16LE(at + 32);
     }
-    return names;
+    return list;
 }
 
 const listing = entries(out);
+const names = listing.map((entry) => entry.name);
 console.log(`${out}: ${listing.length} entries, from ${git('rev-parse', '--short', 'HEAD')}`);
-if (!listing.includes('SKILL.md')) throw new Error('SKILL.md missing at the zip root');
-const unwanted = listing.filter((name) => /(?:^|\/)(?:test|node_modules)\/|package-lock\.json$|\.npmrc$/.test(name));
+if (!names.includes('SKILL.md')) throw new Error('SKILL.md missing at the zip root');
+const unwanted = names.filter((name) => /(?:^|\/)(?:test|node_modules)\/|package-lock\.json$|\.npmrc$/.test(name));
 if (unwanted.length) throw new Error(`left out on purpose, yet in the zip: ${unwanted.join(', ')}`);
+const crlf = listing.filter((entry) => /\.(?:md|mjs|js|json|txt)$|gitignore$/.test(entry.name) && entry.read().includes(13));
+if (crlf.length) throw new Error(`CRLF line endings in the zip: ${crlf.map((entry) => entry.name).join(', ')}`);

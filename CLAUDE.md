@@ -24,6 +24,9 @@ This repo *is* a skill; the product is the text in `skills/cold-webcrafter/`.
   in `evals/evals.json` when behaviour could change (with and without the
   skill, compare).
 - Backlog: `docs/backlog/QUEUE.md`, one task at a time, commit `Sxxx: …`.
+- After every successful task commit, push to the remote yourself
+  (`git push`, current branch) without asking. A commit without a push is
+  not done.
 - Don't change the licence or the repository visibility without the
   maintainer's explicit decision.
 - Releases: `node tools/security-check.mjs`, both test suites, then

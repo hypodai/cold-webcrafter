@@ -17,3 +17,6 @@ Thumbs.db
 
 .env*
 dist/
+
+# Claude Code local settings (personal permissions, never commit)
+.claude/settings.local.json
